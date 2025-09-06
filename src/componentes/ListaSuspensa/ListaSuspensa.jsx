@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-
 import { useState } from "react"
 import { ItemListaSuspensaEstilizado } from "./ItemListaSuspensaEstilizado"
 import { ListaSuspensaEstilizada } from "./ListaSuspensaEstilizada"
@@ -39,7 +38,7 @@ const BotaoEstilizado = styled.button`
     }
 `
 
-export const ListaSuspensa = ({ titulo, opcoes }) => {
+export const ListaSupensa = ({ titulo, opcoes }) => {
     const [estaAberta, alternarVisibilidade] = useState(false)
 
     const [opcaoFocada, setOpcaoFocada] = useState(null);
@@ -69,21 +68,21 @@ export const ListaSuspensa = ({ titulo, opcoes }) => {
                     return focoAntigo -= 1
                 })
                 break;
-            case 'Enter':
-                evento.preventDefault();
-                setOpcaoFocada(null)
-                alternarVisibilidade(false)
-                setOpcaoSelecionada(opcoes[opcaoFocada])
-                break;
-            case 'Tab':
-                setOpcaoFocada(null)
-                alternarVisibilidade(false)
-                break;
-            case 'Escape':
-                evento.preventDefault();
-                setOpcaoFocada(null)
-                alternarVisibilidade(false)
-                break;
+                case 'Enter':
+                    evento.preventDefault();
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
+                    setOpcaoSelecionada(opcoes[opcaoFocada])
+                    break;
+                case 'Tab':
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
+                    break;
+                case 'Escape':
+                    evento.preventDefault();
+                    setOpcaoFocada(null)
+                    alternarVisibilidade(false)
+                    break;
             default:
                 break;
         }
@@ -92,12 +91,12 @@ export const ListaSuspensa = ({ titulo, opcoes }) => {
     return (<LabelEstilizada>
         {titulo}
         <BotaoEstilizado
-            estaAberta={estaAberta}
-            onClick={() => alternarVisibilidade(!estaAberta)}
-            onKeyDown={manipularTeclaDoTeclado}
+             estaAberta={estaAberta}
+             onClick={() => alternarVisibilidade(!estaAberta)}
+             onKeyDown={manipularTeclaDoTeclado}
         >
             <div>
-                {opcaoSelecionada ? opcaoSelecionada.text : 'Selecione'}
+                { opcaoSelecionada ? opcaoSelecionada.text : 'Selecione' } 
             </div>
             <div>
                 <span>{estaAberta ? '▲' : '▼'}</span>
@@ -108,7 +107,7 @@ export const ListaSuspensa = ({ titulo, opcoes }) => {
                 key={opcao.value}
                 focoAtivo={index === opcaoFocada}
                 onClick={() => setOpcaoSelecionada(opcao)}
-            >
+                >
                 {opcao.text}
             </ItemListaSuspensaEstilizado>)}
         </ListaSuspensaEstilizada>}
